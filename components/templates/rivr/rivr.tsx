@@ -1,0 +1,29 @@
+"use client";
+
+import { MotionConfig } from "motion/react";
+
+import { Cta } from "./cta";
+import { Features } from "./features";
+import { Footer } from "./footer";
+import { Hero } from "./hero";
+import { LogoCloud } from "./logo-cloud";
+import { Metrics } from "./metrics";
+import { Stepper } from "./stepper";
+import { RivrStyles } from "./styles";
+
+export default function Rivr() {
+  return (
+    <div className="rivr relative min-h-svh bg-background text-foreground antialiased">
+      <RivrStyles />
+      <MotionConfig reducedMotion="user">
+        <Hero />
+        <Metrics />
+        <LogoCloud />
+        <Stepper />
+        <Features />
+        <Cta />
+        <Footer />
+      </MotionConfig>
+    </div>
+  );
+}
