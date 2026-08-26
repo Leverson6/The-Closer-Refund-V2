@@ -25,7 +25,7 @@ export function Navbar() {
       data-slot="rivr-nav"
       className="relative z-20 flex w-full items-center justify-between px-3 py-4 sm:px-5 sm:py-5 md:px-8"
     >
-      <TheCloserRefundLogo className="h-11 w-auto shrink-0 sm:h-[108px] md:h-[120px]" />
+      <TheCloserRefundLogo className="absolute left-1/2 top-1/2 h-28 w-auto shrink-0 -translate-x-1/2 -translate-y-1/2 lg:static lg:left-auto lg:top-auto lg:h-[120px] lg:translate-x-0 lg:translate-y-0" />
 
       <ul className="hidden lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2 lg:items-center lg:gap-12 lg:text-lg lg:uppercase lg:text-foreground/80">
         {NAV_ITEMS.map((label) => (

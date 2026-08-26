@@ -1742,10 +1742,10 @@ function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
   const doubledLogos = [...logos, ...logos];
 
   return (
-    <div className="h-16 overflow-hidden">
+    <div className="overflow-x-hidden py-3">
       <motion.div
         ref={trackRef}
-        className="flex h-16 w-fit cursor-grab items-center gap-8 active:cursor-grabbing"
+        className="flex h-16 w-fit cursor-grab items-center gap-12 active:cursor-grabbing"
         style={{ x }}
         drag="x"
         dragConstraints={{ left: halfWidth ? -halfWidth : 0, right: 0 }}
@@ -1763,8 +1763,8 @@ function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
           <motion.div
             key={`${entry.id}-${i}`}
             className="flex h-16 shrink-0 items-center"
-            whileHover={{ scale: 1.18 }}
-            whileTap={{ scale: 1.18 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 1.08 }}
             onHoverStart={() => setIsPaused(true)}
             onHoverEnd={() => setIsPaused(false)}
             onTapStart={() => setIsPaused(true)}

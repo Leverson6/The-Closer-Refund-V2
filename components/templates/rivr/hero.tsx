@@ -1,20 +1,65 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+
+import { cn } from "@/lib/utils";
 
 import { Navbar } from "./navbar";
 import { MenuButton } from "./primitives";
 
 const TITLE_CLASSNAME =
-  "mb-2 text-[clamp(2rem,11vw,3.25rem)] font-semibold uppercase leading-[1.05] tracking-[0.01em] text-foreground [overflow-wrap:anywhere] lg:mb-3 lg:text-[80px] lg:tracking-[0.14em]";
+  "font-semibold uppercase leading-[1.05] tracking-[0.01em] text-foreground lg:text-[80px] lg:tracking-[0.14em]";
 
 const TYPING_DURATION_MS = 4000;
+const FIT_REFERENCE_PX = 100;
+const FIT_MAX_PX = 96;
+
+function useIsDesktopViewport() {
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(query.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    query.addEventListener("change", handler);
+    return () => query.removeEventListener("change", handler);
+  }, []);
+
+  return isDesktop;
+}
 
 function ShimmerTypingTitle({ text }: { text: string }) {
   const [displayedText, setDisplayedText] = useState("");
   const [i, setI] = useState(0);
   const stepDuration = TYPING_DURATION_MS / text.length;
+  const isDesktop = useIsDesktopViewport();
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLSpanElement>(null);
+  const [fitSize, setFitSize] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (isDesktop) {
+      setFitSize(null);
+      return;
+    }
+    const wrapper = wrapperRef.current;
+    const measure = measureRef.current;
+    if (!wrapper || !measure) return;
+
+    const fit = () => {
+      const containerWidth = wrapper.clientWidth;
+      const naturalWidth = measure.scrollWidth;
+      if (!containerWidth || !naturalWidth) return;
+      setFitSize(Math.min((containerWidth / naturalWidth) * FIT_REFERENCE_PX, FIT_MAX_PX));
+    };
+
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(wrapper);
+    return () => ro.disconnect();
+  }, [isDesktop, text]);
 
   useEffect(() => {
     const typingEffect = setInterval(() => {
@@ -32,19 +77,30 @@ function ShimmerTypingTitle({ text }: { text: string }) {
   }, [i, stepDuration, text]);
 
   return (
-    <motion.h1
-      data-slot="hero-title"
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-      className={TITLE_CLASSNAME}
-    >
+    <div ref={wrapperRef} className="relative mb-2 w-full lg:mb-3">
       <span
-        className="inline-block bg-clip-text text-transparent bg-[linear-gradient(to_right,hsl(30_8%_15%)_40%,#9b2c2c_50%,hsl(30_8%_15%)_60%)] bg-[length:200%_auto] animate-[rivr-title-shimmer_8s_linear_infinite]"
+        ref={measureRef}
+        aria-hidden="true"
+        style={{ fontSize: `${FIT_REFERENCE_PX}px` }}
+        className={cn(TITLE_CLASSNAME, "invisible absolute left-0 top-0 whitespace-nowrap")}
       >
-        {displayedText}
+        {text}
       </span>
-    </motion.h1>
+      <motion.h1
+        data-slot="hero-title"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+        style={fitSize ? { fontSize: `${fitSize}px` } : undefined}
+        className={cn(TITLE_CLASSNAME, "whitespace-nowrap")}
+      >
+        <span
+          className="inline-block bg-clip-text text-transparent bg-[linear-gradient(to_right,hsl(30_8%_15%)_40%,#9b2c2c_50%,hsl(30_8%_15%)_60%)] bg-[length:200%_auto] animate-[rivr-title-shimmer_8s_linear_infinite]"
+        >
+          {displayedText}
+        </span>
+      </motion.h1>
+    </div>
   );
 }
 
