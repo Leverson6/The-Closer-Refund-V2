@@ -1742,10 +1742,10 @@ function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
   const doubledLogos = [...logos, ...logos];
 
   return (
-    <div className="overflow-x-hidden py-3">
+    <div className="overflow-x-hidden py-2">
       <motion.div
         ref={trackRef}
-        className="flex h-16 w-fit cursor-grab items-center gap-12 active:cursor-grabbing"
+        className="flex h-8 w-fit cursor-grab items-center gap-4 active:cursor-grabbing"
         style={{ x }}
         drag="x"
         dragConstraints={{ left: halfWidth ? -halfWidth : 0, right: 0 }}
@@ -1753,6 +1753,7 @@ function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
         dragTransition={{ power: 0.15, timeConstant: 200 }}
         onDragStart={() => {
           clearTimeout(resumeTimeout.current);
+          setIsPaused(false);
           setIsDragging(true);
         }}
         onDragEnd={() => {
@@ -1762,15 +1763,16 @@ function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
         {doubledLogos.map((entry, i) => (
           <motion.div
             key={`${entry.id}-${i}`}
-            className="flex h-16 shrink-0 items-center"
+            className="flex h-8 shrink-0 items-center"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 1.08 }}
             onHoverStart={() => setIsPaused(true)}
             onHoverEnd={() => setIsPaused(false)}
             onTapStart={() => setIsPaused(true)}
             onTap={() => setIsPaused(false)}
+            onTapCancel={() => setIsPaused(false)}
           >
-            <entry.Component className="h-16 w-auto object-contain" />
+            <entry.Component className="h-8 w-auto object-contain" />
           </motion.div>
         ))}
       </motion.div>

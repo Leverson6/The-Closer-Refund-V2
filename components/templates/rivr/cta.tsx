@@ -9,12 +9,12 @@ export function Cta() {
   return (
     <section
       data-slot="cta"
-      className="flex w-full items-center justify-center bg-background p-3 md:p-5"
+      className="flex w-full items-center justify-center bg-background p-2 md:p-5"
     >
-      <div className="relative flex min-h-[600px] w-full max-w-[1536px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-secondary p-8 md:min-h-[720px] md:rounded-[3rem]">
+      <div className="relative flex min-h-[320px] w-full max-w-[1536px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-secondary p-5 md:min-h-[720px] md:rounded-[3rem] md:p-8">
         <motion.div
           {...fadeUp()}
-          className="relative z-10 flex max-w-2xl flex-col items-center gap-8 text-center"
+          className="relative z-10 flex max-w-2xl flex-col items-center gap-4 text-center md:gap-8"
         >
           <h2 className="font-display text-4xl font-semibold leading-[1.05] text-foreground sm:text-5xl md:text-6xl">
             Melt rigid assets into fluid yield.

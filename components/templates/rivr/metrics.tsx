@@ -34,28 +34,28 @@ const METRICS = [
   },
 ];
 
-const CELL_BORDERS = ["", "md:border-s md:border-foreground/10", "md:border-s md:border-foreground/10"];
+const CELL_BORDERS = ["", "border-s border-foreground/10", "border-s border-foreground/10"];
 
 export function Metrics() {
   return (
     <section
       data-slot="metrics"
-      className="mx-auto w-full max-w-[1536px] overflow-x-hidden px-3 py-6 md:px-5 md:py-12"
+      className="mx-auto w-full max-w-[1536px] overflow-x-hidden px-3 py-4 md:px-5 md:py-12"
     >
-      <div className="rounded-[1.5rem] border border-foreground/[0.05] bg-foreground/[0.02] p-6 md:rounded-[3rem] md:p-16">
-        <dl className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_1.4fr_1fr] md:gap-0">
+      <div className="rounded-[1.5rem] border border-foreground/[0.05] bg-foreground/[0.02] p-3 md:rounded-[3rem] md:p-16">
+        <dl className="grid grid-cols-[1fr_1.4fr_1fr]">
           {METRICS.map((metric, i) => (
             <motion.div
               key={metric.label}
               {...fadeUp(i * 0.08)}
               className={cn(
-                "flex flex-col items-center gap-2 p-3 text-center sm:p-6",
+                "flex flex-col items-center gap-1 p-1 text-center sm:gap-2 sm:p-6",
                 CELL_BORDERS[i],
               )}
             >
               <dt
                 className={cn(
-                  "font-display whitespace-nowrap text-lg font-semibold tracking-tight tabular-nums lg:text-5xl",
+                  "font-display text-lg font-semibold tracking-tight tabular-nums lg:text-5xl",
                   metric.accent ? "text-primary" : "text-foreground",
                 )}
               >
@@ -66,7 +66,7 @@ export function Metrics() {
                   suffix={metric.suffix}
                 />
               </dt>
-              <dd className="text-sm text-muted-foreground">{metric.label}</dd>
+              <dd className="text-[10px] text-muted-foreground sm:text-sm">{metric.label}</dd>
             </motion.div>
           ))}
         </dl>
