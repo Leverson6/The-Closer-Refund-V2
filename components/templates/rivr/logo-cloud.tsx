@@ -14,15 +14,15 @@ import useMeasure from "react-use-measure";
 import { cn } from "@/lib/utils";
 
 const LOGO_INTERACTIVE =
-  "transition-all duration-300 hover:scale-150 active:scale-125 lg:active:scale-150 hover:z-50 active:z-50 hover:mx-4 active:mx-2 relative cursor-pointer";
-const LOGO_CLASSNAME = `h-6 w-auto max-w-[80px] object-contain shrink-0 md:h-10 md:max-w-[120px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_MEDIUM = `h-8 w-auto max-w-[110px] object-contain shrink-0 md:h-14 md:max-w-[180px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_LARGE = `h-10 w-auto max-w-[130px] object-contain shrink-0 md:h-20 md:max-w-[200px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_XL = `h-12 w-auto max-w-[160px] object-contain shrink-0 md:h-28 md:max-w-[340px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_WIDE = `h-6 w-auto max-w-[180px] object-contain shrink-0 md:h-10 md:max-w-[300px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_WIDE_MEDIUM = `h-8 w-auto max-w-[190px] object-contain shrink-0 md:h-14 md:max-w-[320px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_WIDE_MEDIUM_PLUS = `h-9 w-auto max-w-[210px] object-contain shrink-0 md:h-16 md:max-w-[360px] ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_ULTRAWIDE = `h-6 w-auto max-w-[260px] object-contain shrink-0 md:h-10 md:max-w-[580px] ${LOGO_INTERACTIVE}`;
+  "transition-all duration-300 hover:scale-150 active:scale-110 lg:active:scale-150 hover:z-50 active:z-50 hover:mx-4 active:mx-2 relative cursor-pointer";
+const LOGO_CLASSNAME = `h-5 w-auto max-w-[70px] object-contain shrink-0 md:h-10 md:max-w-[120px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_MEDIUM = `h-6 w-auto max-w-[90px] object-contain shrink-0 md:h-14 md:max-w-[180px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_LARGE = `h-8 w-auto max-w-[110px] object-contain shrink-0 md:h-20 md:max-w-[200px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_XL = `h-9 w-auto max-w-[130px] object-contain shrink-0 md:h-28 md:max-w-[340px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_WIDE = `h-5 w-auto max-w-[150px] object-contain shrink-0 md:h-10 md:max-w-[300px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_WIDE_MEDIUM = `h-6 w-auto max-w-[160px] object-contain shrink-0 md:h-14 md:max-w-[320px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_WIDE_MEDIUM_PLUS = `h-7 w-auto max-w-[180px] object-contain shrink-0 md:h-16 md:max-w-[360px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_ULTRAWIDE = `h-5 w-auto max-w-[220px] object-contain shrink-0 md:h-10 md:max-w-[580px] ${LOGO_INTERACTIVE}`;
 
 function NikeLogo({ className }: { className?: string }) {
   return (
@@ -1734,9 +1734,9 @@ export function LogoCloud() {
       className="mx-auto w-full max-w-[1536px] px-3 py-10 lg:px-5 lg:py-24"
     >
       <BlurredInfiniteSlider
-        gap={isDesktop ? 112 : 32}
-        speed={isDesktop ? 40 : 18}
-        speedOnHover={isDesktop ? 20 : 9}
+        gap={isDesktop ? 112 : 24}
+        speed={isDesktop ? 40 : 10}
+        speedOnHover={isDesktop ? 20 : 5}
         fadeWidth={80}
         className="py-8"
       >

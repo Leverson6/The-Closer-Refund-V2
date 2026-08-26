@@ -46,3 +46,8 @@ body {
   -webkit-user-select: none !important;
   user-select: none !important;
 }
+
+[data-slot="logo-cloud"],
+[data-slot="logo-cloud"] * {
+  touch-action: manipulation !important;
+}
