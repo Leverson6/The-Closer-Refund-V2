@@ -3,6 +3,7 @@
 import { ChevronRight } from "lucide-react";
 
 import { MenuButton } from "./primitives";
+import { MobileMenu } from "./mobile-menu";
 
 const NAV_ITEMS: string[] = ["Revolut", "Vacances", "Méthode"];
 
@@ -24,22 +25,26 @@ export function Navbar() {
       data-slot="rivr-nav"
       className="relative z-20 flex w-full items-center justify-between px-3 py-4 sm:px-5 sm:py-5 md:px-8"
     >
-      <TheCloserRefundLogo className="h-[96px] w-auto shrink-0 sm:h-[108px] md:h-[120px]" />
+      <TheCloserRefundLogo className="h-11 w-auto shrink-0 sm:h-[108px] md:h-[120px]" />
 
-      <ul className="flex items-center gap-3 text-xs uppercase text-foreground/80 sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:gap-8 sm:text-base md:gap-12 md:text-lg">
+      <ul className="hidden lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2 lg:items-center lg:gap-12 lg:text-lg lg:uppercase lg:text-foreground/80">
         {NAV_ITEMS.map((label) => (
           <li
             key={label}
-            className="group flex w-fit cursor-pointer items-center gap-1 border-0 bg-transparent p-0 font-bold tracking-wide transition-colors hover:text-foreground sm:gap-2"
+            className="group flex w-fit cursor-pointer items-center gap-2 border-0 bg-transparent p-0 font-bold tracking-wide transition-colors hover:text-foreground"
           >
             {label}
-            <ChevronRight className="size-3 text-primary transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 sm:size-4 md:size-5" />
+            <ChevronRight className="size-5 text-primary transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
           </li>
         ))}
       </ul>
 
-      <div className="ms-auto me-3 sm:me-6">
+      <div className="ms-auto hidden me-3 sm:me-6 lg:block">
         <MenuButton />
+      </div>
+
+      <div className="ms-auto flex self-start lg:hidden">
+        <MobileMenu items={NAV_ITEMS} />
       </div>
     </nav>
   );

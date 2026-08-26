@@ -2,26 +2,48 @@
 
 import { motion } from "motion/react";
 
+import { NumberTicker } from "@/components/animations/number-ticker";
 import { cn } from "@/lib/utils";
 
 import { fadeUp } from "./primitives";
 
 const METRICS = [
-  { value: "+ 100", label: "Clients mensuels", accent: false },
-  { value: "102 203,13 $", label: "Montant traité", accent: true },
-  { value: "98,5 %", label: "Taux de réussite", accent: false },
+  {
+    value: 100,
+    decimalPlaces: 0,
+    prefix: "+ ",
+    suffix: "",
+    label: "Clients mensuels",
+    accent: false,
+  },
+  {
+    value: 102203.13,
+    decimalPlaces: 2,
+    prefix: "",
+    suffix: " $",
+    label: "Montant traité",
+    accent: true,
+  },
+  {
+    value: 98.5,
+    decimalPlaces: 1,
+    prefix: "",
+    suffix: " %",
+    label: "Taux de réussite",
+    accent: false,
+  },
 ];
 
-const CELL_BORDERS = ["", "border-s border-foreground/10", "border-s border-foreground/10"];
+const CELL_BORDERS = ["", "md:border-s md:border-foreground/10", "md:border-s md:border-foreground/10"];
 
 export function Metrics() {
   return (
     <section
       data-slot="metrics"
-      className="mx-auto w-full max-w-[1536px] px-3 py-6 md:px-5 md:py-12"
+      className="mx-auto w-full max-w-[1536px] overflow-x-hidden px-3 py-6 md:px-5 md:py-12"
     >
-      <div className="rounded-[1.5rem] border border-foreground/[0.05] bg-foreground/[0.02] p-8 md:rounded-[3rem] md:p-16">
-        <dl className="grid grid-cols-[1fr_1.4fr_1fr]">
+      <div className="rounded-[1.5rem] border border-foreground/[0.05] bg-foreground/[0.02] p-6 md:rounded-[3rem] md:p-16">
+        <dl className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_1.4fr_1fr] md:gap-0">
           {METRICS.map((metric, i) => (
             <motion.div
               key={metric.label}
@@ -37,7 +59,12 @@ export function Metrics() {
                   metric.accent ? "text-primary" : "text-foreground",
                 )}
               >
-                {metric.value}
+                <NumberTicker
+                  value={metric.value}
+                  decimalPlaces={metric.decimalPlaces}
+                  prefix={metric.prefix}
+                  suffix={metric.suffix}
+                />
               </dt>
               <dd className="text-sm text-muted-foreground">{metric.label}</dd>
             </motion.div>

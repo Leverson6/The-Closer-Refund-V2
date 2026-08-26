@@ -158,7 +158,7 @@ export function Stepper() {
                   aria-label={`Étape ${step.id} : ${step.title}`}
                   aria-current={isActive ? "step" : undefined}
                   className={cn(
-                    "flex size-9 shrink-0 items-center justify-center rounded-full text-sm font-medium md:size-10",
+                    "flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-medium md:size-10 md:text-sm",
                     STEP_INTERACTIVE,
                   )}
                 >
@@ -188,7 +188,7 @@ export function Stepper() {
                 </button>
 
                 {index < STEPS.length - 1 && (
-                  <div className="mx-2 h-0.5 flex-1 overflow-hidden rounded-full bg-[#f0ebe8] md:mx-3">
+                  <div className="mx-1.5 h-0.5 flex-1 overflow-hidden rounded-full bg-[#f0ebe8] md:mx-3">
                     <div
                       className={cn(
                         "h-full rounded-full bg-[#9b2c2c] transition-all ease-linear",
@@ -214,13 +214,13 @@ export function Stepper() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="mx-auto flex w-fit flex-row flex-nowrap items-center gap-2"
           >
-            <h3 className="whitespace-nowrap font-display text-xl font-semibold text-foreground md:text-2xl">
+            <h3 className="whitespace-nowrap font-display text-lg font-semibold text-foreground md:text-2xl">
               {active.id}. {active.title}
             </h3>
             <span className="text-muted-foreground/40" aria-hidden="true">
               —
             </span>
-            <p className="whitespace-nowrap text-sm text-muted-foreground md:text-base">
+            <p className="whitespace-nowrap text-xs text-muted-foreground md:text-base">
               {active.description}
             </p>
           </motion.div>

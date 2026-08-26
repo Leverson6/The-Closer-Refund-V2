@@ -15,14 +15,14 @@ import { cn } from "@/lib/utils";
 
 const LOGO_INTERACTIVE =
   "transition-all duration-300 hover:scale-150 active:scale-150 hover:z-50 active:z-50 hover:mx-4 relative cursor-pointer";
-const LOGO_CLASSNAME = `h-10 w-auto max-w-[120px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_MEDIUM = `h-14 w-auto max-w-[180px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_LARGE = `h-20 w-auto max-w-[200px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_XL = `h-28 w-auto max-w-[340px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_WIDE = `h-10 w-auto max-w-[300px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_WIDE_MEDIUM = `h-14 w-auto max-w-[320px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_WIDE_MEDIUM_PLUS = `h-16 w-auto max-w-[360px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
-const LOGO_CLASSNAME_ULTRAWIDE = `h-10 w-auto max-w-[580px] object-contain shrink-0 ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME = `h-6 w-auto max-w-[80px] object-contain shrink-0 md:h-10 md:max-w-[120px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_MEDIUM = `h-8 w-auto max-w-[110px] object-contain shrink-0 md:h-14 md:max-w-[180px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_LARGE = `h-10 w-auto max-w-[130px] object-contain shrink-0 md:h-20 md:max-w-[200px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_XL = `h-12 w-auto max-w-[160px] object-contain shrink-0 md:h-28 md:max-w-[340px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_WIDE = `h-6 w-auto max-w-[180px] object-contain shrink-0 md:h-10 md:max-w-[300px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_WIDE_MEDIUM = `h-8 w-auto max-w-[190px] object-contain shrink-0 md:h-14 md:max-w-[320px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_WIDE_MEDIUM_PLUS = `h-9 w-auto max-w-[210px] object-contain shrink-0 md:h-16 md:max-w-[360px] ${LOGO_INTERACTIVE}`;
+const LOGO_CLASSNAME_ULTRAWIDE = `h-6 w-auto max-w-[260px] object-contain shrink-0 md:h-10 md:max-w-[580px] ${LOGO_INTERACTIVE}`;
 
 function NikeLogo({ className }: { className?: string }) {
   return (
@@ -611,7 +611,6 @@ function NbaLogo({ className }: { className?: string }) {
   return (
     <svg role="img" aria-label="NBA" viewBox="0 0 276.991 569.026" className={className}>
       <title>NBA</title>
-      <path fill="#fff" d="M0 0h276.991v569.026H0z" />
       <path
         fill="#0e499d"
         d="M197.43 503.7c.497-8.029.332-10.678-.754-11.985-.824-.994-1.408-4.093-1.432-7.609-.036-5.326-.751-7.315-7.006-19.461-6.674-12.965-6.913-13.673-5.727-16.952 1.105-3.06.948-4.088-1.47-9.664-2.412-5.562-3.497-6.774-9.957-11.134-12.532-8.457-22.604-17.08-39.377-33.705-18.725-18.567-34.272-38.982-48.689-63.937-5.006-8.664-5.398-9.024-9.82-9.047-3.32-.017-7.307-2.913-7.292-5.301.004-.692-4.059-9.642-9.029-19.886-12.898-26.586-14.001-32.248-10.057-51.606 2.341-11.478 2.781-12.51 7.663-17.915 5.183-5.735 4.37-7.35-4.119-8.189-11.341-1.123-11.225-1.052-13.576-8.329-1.156-3.579-2.102-7.635-2.102-9.013 0-4.567 5.186-19.02 12.316-34.325 3.868-8.306 8.828-19.633 11.021-25.171 7.803-19.708 18.568-35.466 27.26-39.901 3.475-1.773 10.229-3.106 30.328-5.989 11.188-1.605 11.976-2.418 13.583-14.014.935-6.744.842-7.801-.924-10.661-1.274-2.06-1.962-4.976-1.962-8.314 0-4.694.263-5.277 3.021-6.703 2.666-1.378 3.021-2.085 3.021-6.017 0-9.406 1.897-14.643 7.176-19.777a88.325 88.325 0 0 0 3.67-3.77H74.065c-23.482 0-42.52 19.037-42.52 42.52v433.586c0 23.482 19.037 42.521 42.52 42.521H200.55c-.427-.941-1.319-2.465-2.354-3.974-2.878-4.189-2.846-2.718-.766-36.278z"
@@ -1623,7 +1622,7 @@ const ALL_LOGOS: LogoEntry[] = [
   { id: "bershka", Component: BershkaLogo, mode: "mono", className: LOGO_CLASSNAME_WIDE },
   { id: "shein", Component: SheinLogo, mode: "mono", className: LOGO_CLASSNAME_WIDE },
   { id: "patagonia", Component: PatagoniaLogo, mode: "color", className: LOGO_CLASSNAME_MEDIUM },
-  { id: "onrunning", Component: OnRunningLogo, mode: "mono", className: LOGO_CLASSNAME },
+  { id: "onrunning", Component: OnRunningLogo, mode: "mono", className: LOGO_CLASSNAME_LARGE },
   { id: "dcshoes", Component: DcShoesLogo, mode: "color", className: LOGO_CLASSNAME_LARGE },
   { id: "philips", Component: PhilipsLogo, mode: "color", className: LOGO_CLASSNAME_WIDE },
   { id: "nba", Component: NbaLogo, mode: "color", className: LOGO_CLASSNAME_LARGE },
@@ -1703,9 +1702,24 @@ function buildAlternatingOrder(entries: LogoEntry[]): LogoEntry[] {
   return entries;
 }
 
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(query.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    query.addEventListener("change", handler);
+    return () => query.removeEventListener("change", handler);
+  }, []);
+
+  return isDesktop;
+}
+
 export function LogoCloud() {
   const [isMounted, setIsMounted] = useState(false);
   const [logos, setLogos] = useState<LogoEntry[]>(ALL_LOGOS);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     setLogos(buildAlternatingOrder(ALL_LOGOS));
@@ -1719,7 +1733,13 @@ export function LogoCloud() {
       data-slot="logo-cloud"
       className="mx-auto w-full max-w-[1536px] px-3 py-16 md:px-5 md:py-24"
     >
-      <BlurredInfiniteSlider gap={112} speed={40} speedOnHover={20} fadeWidth={80} className="py-8">
+      <BlurredInfiniteSlider
+        gap={isDesktop ? 112 : 40}
+        speed={40}
+        speedOnHover={20}
+        fadeWidth={80}
+        className="py-8"
+      >
         {displayedLogos.map(({ id, Component, className }) => (
           <Component key={id} className={className} />
         ))}

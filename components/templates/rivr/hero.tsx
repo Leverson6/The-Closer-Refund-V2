@@ -7,7 +7,7 @@ import { Navbar } from "./navbar";
 import { MenuButton } from "./primitives";
 
 const TITLE_CLASSNAME =
-  "mb-3 text-3xl font-semibold uppercase leading-[1.05] tracking-[0.04em] text-foreground sm:text-5xl sm:tracking-[0.08em] md:text-6xl md:tracking-[0.12em] lg:text-[80px] lg:tracking-[0.14em]";
+  "mb-3 text-2xl font-semibold uppercase leading-[1.05] tracking-[0.02em] text-foreground sm:text-5xl sm:tracking-[0.08em] md:text-6xl md:tracking-[0.12em] lg:text-[80px] lg:tracking-[0.14em]";
 
 const TYPING_DURATION_MS = 4000;
 
@@ -112,9 +112,9 @@ export function Hero() {
     <section
       id="home"
       data-slot="hero"
-      className="flex min-h-[80dvh] w-full items-stretch justify-center bg-background p-3 md:p-5"
+      className="flex min-h-[520px] w-full items-stretch justify-center bg-background p-3 md:min-h-[80dvh] md:p-5"
     >
-      <div className="group relative flex min-h-[560px] w-full max-w-[1536px] flex-col items-center overflow-hidden rounded-[1.5rem] bg-secondary md:rounded-[3rem]">
+      <div className="group relative flex min-h-[480px] w-full max-w-[1536px] flex-col items-center overflow-hidden rounded-[1.5rem] bg-secondary md:min-h-[560px] md:rounded-[3rem]">
         <div className="relative z-10 flex size-full flex-col items-center">
           <Navbar />
 
@@ -123,7 +123,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-2 text-2xl font-semibold text-foreground/80 sm:text-3xl"
+              className="mb-2 text-lg font-semibold text-foreground/80 sm:text-3xl"
             >
               Récupérez votre
             </motion.p>
@@ -134,7 +134,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-              className="text-2xl font-semibold text-foreground/80 sm:text-3xl"
+              className="text-lg font-semibold text-foreground/80 sm:text-3xl"
             >
               sur chaque commande
             </motion.p>

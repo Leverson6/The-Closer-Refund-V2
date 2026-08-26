@@ -13,7 +13,7 @@ import { RivrStyles } from "./styles";
 
 export default function Rivr() {
   return (
-    <div className="rivr relative min-h-svh bg-background text-foreground antialiased">
+    <div className="rivr relative min-h-svh overflow-x-hidden bg-background text-foreground antialiased">
       <RivrStyles />
       <MotionConfig reducedMotion="user">
         <Hero />
