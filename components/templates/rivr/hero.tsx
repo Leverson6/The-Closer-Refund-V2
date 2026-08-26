@@ -7,7 +7,7 @@ import { Navbar } from "./navbar";
 import { MenuButton } from "./primitives";
 
 const TITLE_CLASSNAME =
-  "mb-3 text-2xl font-semibold uppercase leading-[1.05] tracking-[0.02em] text-foreground sm:text-5xl sm:tracking-[0.08em] md:text-6xl md:tracking-[0.12em] lg:text-[80px] lg:tracking-[0.14em]";
+  "mb-2 text-[clamp(2rem,11vw,3.25rem)] font-semibold uppercase leading-[1.05] tracking-[0.01em] text-foreground [overflow-wrap:anywhere] lg:mb-3 lg:text-[80px] lg:tracking-[0.14em]";
 
 const TYPING_DURATION_MS = 4000;
 
@@ -123,7 +123,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-2 text-lg font-semibold text-foreground/80 sm:text-3xl"
+              className="mb-1 text-xs font-semibold text-foreground/80 lg:mb-2 lg:text-3xl"
             >
               Récupérez votre
             </motion.p>
@@ -134,7 +134,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-              className="text-lg font-semibold text-foreground/80 sm:text-3xl"
+              className="text-xs font-semibold text-foreground/80 lg:text-3xl"
             >
               sur chaque commande
             </motion.p>

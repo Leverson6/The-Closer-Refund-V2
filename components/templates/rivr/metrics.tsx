@@ -55,7 +55,7 @@ export function Metrics() {
             >
               <dt
                 className={cn(
-                  "font-display whitespace-nowrap text-2xl font-semibold tracking-tight tabular-nums sm:text-4xl md:text-5xl",
+                  "font-display whitespace-nowrap text-lg font-semibold tracking-tight tabular-nums lg:text-5xl",
                   metric.accent ? "text-primary" : "text-foreground",
                 )}
               >

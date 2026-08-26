@@ -35,4 +35,8 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
