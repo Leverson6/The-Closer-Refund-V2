@@ -14,7 +14,7 @@ import useMeasure from "react-use-measure";
 import { cn } from "@/lib/utils";
 
 const LOGO_INTERACTIVE =
-  "transition-all duration-300 hover:scale-150 active:scale-150 hover:z-50 active:z-50 hover:mx-4 relative cursor-pointer";
+  "transition-all duration-300 hover:scale-150 active:scale-125 lg:active:scale-150 hover:z-50 active:z-50 hover:mx-4 active:mx-2 relative cursor-pointer";
 const LOGO_CLASSNAME = `h-6 w-auto max-w-[80px] object-contain shrink-0 md:h-10 md:max-w-[120px] ${LOGO_INTERACTIVE}`;
 const LOGO_CLASSNAME_MEDIUM = `h-8 w-auto max-w-[110px] object-contain shrink-0 md:h-14 md:max-w-[180px] ${LOGO_INTERACTIVE}`;
 const LOGO_CLASSNAME_LARGE = `h-10 w-auto max-w-[130px] object-contain shrink-0 md:h-20 md:max-w-[200px] ${LOGO_INTERACTIVE}`;
@@ -1735,8 +1735,8 @@ export function LogoCloud() {
     >
       <BlurredInfiniteSlider
         gap={isDesktop ? 112 : 32}
-        speed={40}
-        speedOnHover={20}
+        speed={isDesktop ? 40 : 18}
+        speedOnHover={isDesktop ? 20 : 9}
         fadeWidth={80}
         className="py-8"
       >
