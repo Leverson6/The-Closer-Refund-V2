@@ -39,19 +39,6 @@ const RIVR_CSS = `
   padding: 0;
   margin: 0;
 }
-.rivr [data-slot="rivr-nav"],
-.rivr [data-slot="hero-title"],
-.rivr [data-slot="hero"] p,
-.rivr [data-slot="hero-docs"],
-.rivr [data-slot="logo-cloud"],
-.rivr button,
-.rivr a {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  pointer-events: auto;
-}
 @keyframes rivr-title-shimmer {
   from {
     background-position: 200% center;
