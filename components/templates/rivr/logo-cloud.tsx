@@ -6,10 +6,9 @@ import {
   Fragment,
   type ReactNode,
   useEffect,
-  useRef,
   useState,
 } from "react";
-import { animate, motion, useAnimationFrame, useMotionValue } from "motion/react";
+import { animate, motion, useMotionValue } from "motion/react";
 import useMeasure from "react-use-measure";
 
 import { cn } from "@/lib/utils";
@@ -40,6 +39,7 @@ type InfiniteSliderProps = {
   speed?: number;
   speedOnHover?: number;
   className?: string;
+  enableDrag?: boolean;
 };
 
 function InfiniteSlider({
@@ -48,15 +48,17 @@ function InfiniteSlider({
   speed = 40,
   speedOnHover,
   className,
+  enableDrag = false,
 }: InfiniteSliderProps) {
   const [currentSpeed, setCurrentSpeed] = useState(speed);
   const [ref, { width }] = useMeasure();
   const translation = useMotionValue(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    if (width === 0) return;
+    if (isDragging || width === 0) return;
 
     const contentSize = width + gap;
     const from = 0;
@@ -90,7 +92,7 @@ function InfiniteSlider({
     }
 
     return () => controls?.stop();
-  }, [key, translation, currentSpeed, width, gap, isTransitioning]);
+  }, [key, translation, currentSpeed, width, gap, isTransitioning, isDragging]);
 
   const hoverProps = speedOnHover
     ? {
@@ -105,13 +107,28 @@ function InfiniteSlider({
       }
     : {};
 
+  const dragProps = enableDrag
+    ? {
+        drag: "x" as const,
+        dragMomentum: false,
+        dragElastic: 0.15,
+        dragConstraints: { left: -(width + gap), right: width + gap },
+        onDragStart: () => setIsDragging(true),
+        onDragEnd: () => {
+          setIsDragging(false);
+          setIsTransitioning(true);
+        },
+      }
+    : {};
+
   return (
-    <div className={cn("overflow-hidden", className)}>
+    <div className={cn("overflow-x-hidden", className)}>
       <motion.div
-        className="flex w-max items-center"
+        className={cn("flex w-max items-center", enableDrag && "cursor-grab active:cursor-grabbing")}
         style={{ x: translation, gap: `${gap}px` }}
         ref={ref}
         {...hoverProps}
+        {...dragProps}
       >
         <Fragment key="a">{children}</Fragment>
         <Fragment key="b">{children}</Fragment>
@@ -1717,69 +1734,6 @@ function useIsDesktop() {
   return isDesktop;
 }
 
-const CAROUSEL_AUTO_SPEED = 26;
-const CAROUSEL_RESUME_DELAY_MS = 700;
-
-function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
-  const [trackRef, trackBounds] = useMeasure();
-  const x = useMotionValue(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const resumeTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  useEffect(() => () => clearTimeout(resumeTimeout.current), []);
-
-  const halfWidth = trackBounds.width / 2;
-
-  useAnimationFrame((_, delta) => {
-    if (isPaused || isDragging || halfWidth === 0) return;
-    let next = x.get() - (CAROUSEL_AUTO_SPEED * delta) / 1000;
-    if (next <= -halfWidth) next += halfWidth;
-    if (next > 0) next -= halfWidth;
-    x.set(next);
-  });
-
-  const doubledLogos = [...logos, ...logos];
-
-  return (
-    <div className="overflow-x-hidden py-2">
-      <motion.div
-        ref={trackRef}
-        className="flex h-8 w-fit cursor-grab items-center gap-4 active:cursor-grabbing"
-        style={{ x }}
-        drag="x"
-        dragConstraints={{ left: halfWidth ? -halfWidth : 0, right: 0 }}
-        dragElastic={0.12}
-        dragTransition={{ power: 0.15, timeConstant: 200 }}
-        onDragStart={() => {
-          clearTimeout(resumeTimeout.current);
-          setIsPaused(false);
-          setIsDragging(true);
-        }}
-        onDragEnd={() => {
-          resumeTimeout.current = setTimeout(() => setIsDragging(false), CAROUSEL_RESUME_DELAY_MS);
-        }}
-      >
-        {doubledLogos.map((entry, i) => (
-          <motion.div
-            key={`${entry.id}-${i}`}
-            className="flex h-8 shrink-0 items-center"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 1.08 }}
-            onHoverStart={() => setIsPaused(true)}
-            onHoverEnd={() => setIsPaused(false)}
-            onTapStart={() => setIsPaused(true)}
-            onTap={() => setIsPaused(false)}
-            onTapCancel={() => setIsPaused(false)}
-          >
-            <entry.Component className="h-8 w-auto object-contain" />
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
 export function LogoCloud() {
   const [isMounted, setIsMounted] = useState(false);
   const [logos, setLogos] = useState<LogoEntry[]>(ALL_LOGOS);
@@ -1797,15 +1751,18 @@ export function LogoCloud() {
       data-slot="logo-cloud"
       className="mx-auto w-full max-w-[1536px] px-3 py-10 lg:px-5 lg:py-24"
     >
-      {isDesktop ? (
-        <BlurredInfiniteSlider gap={112} speed={40} speedOnHover={20} fadeWidth={80} className="py-8">
-          {displayedLogos.map(({ id, Component, className }) => (
-            <Component key={id} className={className} />
-          ))}
-        </BlurredInfiniteSlider>
-      ) : (
-        <LogoDragCarousel logos={displayedLogos} />
-      )}
+      <BlurredInfiniteSlider
+        gap={isDesktop ? 112 : 32}
+        speed={40}
+        speedOnHover={20}
+        fadeWidth={80}
+        enableDrag
+        className="py-8"
+      >
+        {displayedLogos.map(({ id, Component, className }) => (
+          <Component key={id} className={className} />
+        ))}
+      </BlurredInfiniteSlider>
     </section>
   );
 }

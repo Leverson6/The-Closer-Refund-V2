@@ -34,7 +34,11 @@ const METRICS = [
   },
 ];
 
-const CELL_BORDERS = ["", "border-s border-foreground/10", "border-s border-foreground/10"];
+const CELL_BORDERS = [
+  "",
+  "border-s border-foreground/5 md:border-foreground/10",
+  "border-s border-foreground/5 md:border-foreground/10",
+];
 
 export function Metrics() {
   return (
