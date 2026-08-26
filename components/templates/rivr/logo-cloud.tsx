@@ -6,9 +6,10 @@ import {
   Fragment,
   type ReactNode,
   useEffect,
+  useRef,
   useState,
 } from "react";
-import { animate, motion, useMotionValue } from "motion/react";
+import { animate, motion, useAnimationFrame, useMotionValue } from "motion/react";
 import useMeasure from "react-use-measure";
 
 import { cn } from "@/lib/utils";
@@ -1706,7 +1707,7 @@ function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 768px)");
+    const query = window.matchMedia("(min-width: 1024px)");
     setIsDesktop(query.matches);
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
     query.addEventListener("change", handler);
@@ -1714,6 +1715,67 @@ function useIsDesktop() {
   }, []);
 
   return isDesktop;
+}
+
+const CAROUSEL_AUTO_SPEED = 26;
+const CAROUSEL_RESUME_DELAY_MS = 500;
+
+function LogoDragCarousel({ logos }: { logos: LogoEntry[] }) {
+  const [containerRef] = useMeasure();
+  const [trackRef, trackBounds] = useMeasure();
+  const x = useMotionValue(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const resumeTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => () => clearTimeout(resumeTimeout.current), []);
+
+  const halfWidth = trackBounds.width / 2;
+
+  useAnimationFrame((_, delta) => {
+    if (isPaused || isDragging || halfWidth === 0) return;
+    let next = x.get() - (CAROUSEL_AUTO_SPEED * delta) / 1000;
+    if (next <= -halfWidth) next += halfWidth;
+    x.set(next);
+  });
+
+  const doubledLogos = [...logos, ...logos];
+
+  return (
+    <div ref={containerRef} className="overflow-hidden">
+      <motion.div
+        ref={trackRef}
+        className="flex w-fit cursor-grab items-center gap-6 py-4 active:cursor-grabbing"
+        style={{ x }}
+        drag="x"
+        dragConstraints={{ left: halfWidth ? -halfWidth : 0, right: 0 }}
+        dragElastic={0.12}
+        dragTransition={{ power: 0.15, timeConstant: 200 }}
+        onDragStart={() => {
+          clearTimeout(resumeTimeout.current);
+          setIsDragging(true);
+        }}
+        onDragEnd={() => {
+          resumeTimeout.current = setTimeout(() => setIsDragging(false), CAROUSEL_RESUME_DELAY_MS);
+        }}
+      >
+        {doubledLogos.map((entry, i) => (
+          <motion.div
+            key={`${entry.id}-${i}`}
+            className="flex h-12 w-28 shrink-0 items-center justify-center"
+            whileHover={{ scale: 1.18 }}
+            whileTap={{ scale: 1.18 }}
+            onHoverStart={() => setIsPaused(true)}
+            onHoverEnd={() => setIsPaused(false)}
+            onTapStart={() => setIsPaused(true)}
+            onTap={() => setIsPaused(false)}
+          >
+            <entry.Component className="max-h-full max-w-full object-contain" />
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  );
 }
 
 export function LogoCloud() {
@@ -1731,19 +1793,17 @@ export function LogoCloud() {
   return (
     <section
       data-slot="logo-cloud"
-      className="mx-auto w-full max-w-[1536px] px-3 py-16 md:px-5 md:py-24"
+      className="mx-auto w-full max-w-[1536px] px-3 py-10 lg:px-5 lg:py-24"
     >
-      <BlurredInfiniteSlider
-        gap={isDesktop ? 112 : 40}
-        speed={40}
-        speedOnHover={20}
-        fadeWidth={80}
-        className="py-8"
-      >
-        {displayedLogos.map(({ id, Component, className }) => (
-          <Component key={id} className={className} />
-        ))}
-      </BlurredInfiniteSlider>
+      {isDesktop ? (
+        <BlurredInfiniteSlider gap={112} speed={40} speedOnHover={20} fadeWidth={80} className="py-8">
+          {displayedLogos.map(({ id, Component, className }) => (
+            <Component key={id} className={className} />
+          ))}
+        </BlurredInfiniteSlider>
+      ) : (
+        <LogoDragCarousel logos={displayedLogos} />
+      )}
     </section>
   );
 }

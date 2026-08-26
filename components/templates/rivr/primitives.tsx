@@ -111,14 +111,14 @@ export function MenuButton({
       <span
         aria-hidden="true"
         className={cn(
-          "absolute left-0 top-0 rounded-full border-0 transition-all duration-500 ease-out group-hover:w-full group-hover:bg-primary group-active:w-full group-active:bg-primary",
+          "absolute left-0 top-0 rounded-full border-0 transition-all duration-500 ease-out group-hover:w-full group-hover:bg-primary group-active:w-full group-active:bg-primary group-active:duration-150",
           restBackground,
           MENU_BUTTON_CHIP[size],
         )}
       />
       <span
         className={cn(
-          "relative z-10 flex shrink-0 items-center justify-center text-foreground transition-colors duration-500 ease-out group-hover:text-primary-foreground group-active:text-primary-foreground",
+          "relative z-10 flex shrink-0 items-center justify-center text-foreground transition-colors duration-500 ease-out group-hover:text-primary-foreground group-active:text-[#faf7f5] group-active:duration-150",
           MENU_BUTTON_CHIP[size],
         )}
       >
@@ -126,7 +126,7 @@ export function MenuButton({
       </span>
       <span
         className={cn(
-          "relative z-10 whitespace-nowrap text-foreground transition-colors duration-500 ease-out group-hover:text-primary-foreground group-active:text-primary-foreground",
+          "relative z-10 whitespace-nowrap text-foreground transition-colors duration-500 ease-out group-hover:text-primary-foreground group-active:text-[#faf7f5] group-active:duration-150",
           MENU_BUTTON_TEXT_GAP[size],
         )}
       >
