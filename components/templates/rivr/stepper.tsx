@@ -6,8 +6,7 @@ import { motion } from "motion/react";
 import { fadeUp } from "./primitives";
 import { cn } from "@/lib/utils";
 
-const STEP_INTERACTIVE =
-  "transition-all duration-300 hover:scale-150 active:scale-150 hover:z-50 active:z-50 hover:mx-4 relative cursor-pointer";
+const STEP_INTERACTIVE = "hover:z-50 active:z-50 relative cursor-pointer";
 
 // Vitesse du remplissage domino : décalage entre chaque segment (ligne/cercle)
 // et durée de chaque remplissage individuel.
