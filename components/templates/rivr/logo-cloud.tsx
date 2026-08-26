@@ -39,7 +39,6 @@ type InfiniteSliderProps = {
   speed?: number;
   speedOnHover?: number;
   className?: string;
-  enableDrag?: boolean;
 };
 
 function InfiniteSlider({
@@ -48,17 +47,15 @@ function InfiniteSlider({
   speed = 40,
   speedOnHover,
   className,
-  enableDrag = false,
 }: InfiniteSliderProps) {
   const [currentSpeed, setCurrentSpeed] = useState(speed);
   const [ref, { width }] = useMeasure();
   const translation = useMotionValue(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    if (isDragging || width === 0) return;
+    if (width === 0) return;
 
     const contentSize = width + gap;
     const from = 0;
@@ -92,7 +89,7 @@ function InfiniteSlider({
     }
 
     return () => controls?.stop();
-  }, [key, translation, currentSpeed, width, gap, isTransitioning, isDragging]);
+  }, [key, translation, currentSpeed, width, gap, isTransitioning]);
 
   const hoverProps = speedOnHover
     ? {
@@ -107,28 +104,13 @@ function InfiniteSlider({
       }
     : {};
 
-  const dragProps = enableDrag
-    ? {
-        drag: "x" as const,
-        dragMomentum: false,
-        dragElastic: 0.15,
-        dragConstraints: { left: -(width + gap), right: width + gap },
-        onDragStart: () => setIsDragging(true),
-        onDragEnd: () => {
-          setIsDragging(false);
-          setIsTransitioning(true);
-        },
-      }
-    : {};
-
   return (
     <div className={cn("overflow-x-hidden", className)}>
       <motion.div
-        className={cn("flex w-max items-center", enableDrag && "cursor-grab active:cursor-grabbing")}
+        className="flex w-max items-center"
         style={{ x: translation, gap: `${gap}px` }}
         ref={ref}
         {...hoverProps}
-        {...dragProps}
       >
         <Fragment key="a">{children}</Fragment>
         <Fragment key="b">{children}</Fragment>
@@ -1756,7 +1738,6 @@ export function LogoCloud() {
         speed={40}
         speedOnHover={20}
         fadeWidth={80}
-        enableDrag
         className="py-8"
       >
         {displayedLogos.map(({ id, Component, className }) => (
