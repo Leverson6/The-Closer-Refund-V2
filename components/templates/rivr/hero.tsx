@@ -14,7 +14,7 @@ export function Hero() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/3 -translate-y-1/3 rounded-full bg-[#1c63d6]/40 blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/8 blur-[160px]"
       />
 
       <div className="relative z-10 flex flex-col items-center">
@@ -34,7 +34,7 @@ export function Hero() {
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className="font-display bg-linear-to-b from-sky-100 to-foreground bg-clip-text text-4xl font-medium leading-[1.1] tracking-tight text-transparent sm:text-5xl lg:text-6xl"
+            className="font-display text-4xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
           >
             Beautiful Landing Page Template for SaaS Startups
           </motion.h1>

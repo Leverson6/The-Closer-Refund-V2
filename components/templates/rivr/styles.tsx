@@ -1,25 +1,25 @@
 const RIVR_CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 .rivr {
-  --background: hsl(24 33% 97%);
-  --foreground: hsl(30 8% 15%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(30 8% 15%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(30 8% 15%);
-  --primary: hsl(0 56% 39%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(38 64% 89%);
-  --secondary-foreground: hsl(30 8% 15%);
-  --muted: hsl(22 21% 93%);
-  --muted-foreground: hsl(30 7% 42%);
-  --accent: hsl(43 91% 92%);
-  --accent-foreground: hsl(30 8% 15%);
-  --destructive: hsl(0 56% 39%);
-  --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(24 18% 87%);
-  --input: hsl(24 18% 87%);
-  --ring: hsl(0 56% 39%);
+  --background: #fafafa;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #df6035;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #111111;
+  --muted: #f2f2f2;
+  --muted-foreground: #6b7280;
+  --accent: #f2f2f2;
+  --accent-foreground: #111111;
+  --destructive: #c1392b;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #df6035;
   font-family: "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
 }
 .rivr .font-display {

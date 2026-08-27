@@ -167,7 +167,7 @@ export function Stepper() {
                     className={cn(
                       "absolute inset-0 rounded-full",
                       STEP_ZOOM,
-                      isCompleted || isActive ? "bg-[#9b2c2c]" : "bg-[#f0ebe8]",
+                      isCompleted || isActive ? "bg-[#df6035]" : "bg-muted",
                     )}
                     style={{
                       transitionDelay: `${circleDelay}ms`,
@@ -178,7 +178,7 @@ export function Stepper() {
                     className={cn(
                       "relative",
                       STEP_ZOOM,
-                      isCompleted || isActive ? "text-white" : "text-[#9b2c2c]/50",
+                      isCompleted || isActive ? "text-white" : "text-foreground/40",
                     )}
                     style={{
                       transitionDelay: `${circleDelay}ms`,
@@ -190,10 +190,10 @@ export function Stepper() {
                 </button>
 
                 {index < STEPS.length - 1 && (
-                  <div className="mx-1.5 h-0.5 flex-1 overflow-hidden rounded-full bg-[#f0ebe8] md:mx-3">
+                  <div className="mx-1.5 h-0.5 flex-1 overflow-hidden rounded-full bg-border md:mx-3">
                     <div
                       className={cn(
-                        "h-full rounded-full bg-[#9b2c2c] transition-all ease-linear",
+                        "h-full rounded-full bg-[#df6035] transition-all ease-linear",
                         step.id < activeStep ? "w-full" : "w-0",
                       )}
                       style={{
