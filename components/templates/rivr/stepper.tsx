@@ -6,7 +6,8 @@ import { motion } from "motion/react";
 import { fadeUp } from "./primitives";
 import { cn } from "@/lib/utils";
 
-const STEP_INTERACTIVE = "hover:z-50 active:z-50 relative cursor-pointer";
+const STEP_INTERACTIVE = "group relative hover:z-50 active:z-50 cursor-pointer";
+const STEP_ZOOM = "pointer-events-none transition-all ease-linear group-hover:scale-150 group-active:scale-150";
 
 // Vitesse du remplissage domino : décalage entre chaque segment (ligne/cercle)
 // et durée de chaque remplissage individuel.
@@ -164,7 +165,8 @@ export function Stepper() {
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "absolute inset-0 rounded-full transition-colors ease-linear",
+                      "absolute inset-0 rounded-full",
+                      STEP_ZOOM,
                       isCompleted || isActive ? "bg-[#9b2c2c]" : "bg-[#f0ebe8]",
                     )}
                     style={{
@@ -174,7 +176,8 @@ export function Stepper() {
                   />
                   <span
                     className={cn(
-                      "relative transition-colors ease-linear",
+                      "relative",
+                      STEP_ZOOM,
                       isCompleted || isActive ? "text-white" : "text-[#9b2c2c]/50",
                     )}
                     style={{
