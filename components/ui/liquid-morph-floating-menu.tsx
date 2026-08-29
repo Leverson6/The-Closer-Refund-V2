@@ -139,9 +139,9 @@ export default function FloatingMenu({ items }: FloatingMenuProps) {
   return (
     <motion.div
       ref={containerRef}
-      className="fixed bottom-10 left-1/2 z-[100]"
-      style={{ x: "-50%", pointerEvents: "auto" }}
-      initial={{ opacity: 0, y: 20 }}
+      className="fixed top-4 right-4 z-[100] sm:top-6 sm:right-6"
+      style={{ pointerEvents: "auto" }}
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease }}
     >

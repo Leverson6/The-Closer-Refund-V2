@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import FloatingMenu from "@/components/ui/liquid-morph-floating-menu";
 import { TheCloserRefundLogo } from "./closer-refund-logo";
-import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
   { label: "REVOLUT", href: "#" },
@@ -134,18 +134,7 @@ export function Navbar() {
         <Dropdown />
       </div>
 
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          className="hidden items-center rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:flex"
-        >
-          MENU
-        </button>
-
-        <div className="lg:hidden">
-          <MobileMenu items={["REVOLUT", "VACANCES"]} />
-        </div>
-      </div>
+      <FloatingMenu items={NAV_LINKS.map(({ label }) => ({ label }))} />
     </nav>
   );
 }
