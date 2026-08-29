@@ -7,18 +7,18 @@ import {
   ChevronDown,
   ExternalLink,
   Globe,
-  Moon,
   Smile,
   Timer,
   User,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { TheCloserRefundLogo } from "./closer-refund-logo";
 import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "REVOLUT", href: "#" },
+  { label: "VACANCES", href: "#" },
 ];
 
 const DROPDOWN_ITEMS = [
@@ -54,22 +54,6 @@ const DROPDOWN_ITEMS = [
   },
 ];
 
-function XLogo({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 1227"
-      fill="none"
-      className={className}
-    >
-      <path
-        fill="currentColor"
-        d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
-      />
-    </svg>
-  );
-}
-
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -85,7 +69,7 @@ function Dropdown() {
         aria-expanded={isOpen}
         className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
       >
-        Dropdown
+        COMMUNAUTÉ
         <ChevronDown
           className={cn(
             "size-4 transition-transform duration-300",
@@ -132,50 +116,34 @@ export function Navbar() {
       data-slot="rivr-nav"
       className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
     >
-      <div className="flex items-center gap-8">
-        <Link
-          href="/"
-          className="font-display text-xl font-semibold tracking-tight text-foreground"
-        >
-          Acme
-        </Link>
+      <Link href="/" className="flex items-center">
+        <TheCloserRefundLogo className="h-[100px] w-auto sm:h-[120px]" />
+      </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
-          {NAV_LINKS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
+      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 lg:flex">
+        {NAV_LINKS.map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+          >
+            {item.label}
+          </Link>
+        ))}
 
-          <Dropdown />
-        </div>
+        <Dropdown />
       </div>
 
       <div className="flex items-center gap-3">
-        <Link
-          href="https://x.com"
-          target="_blank"
-          rel="noreferrer"
-          className="hidden items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:flex"
-        >
-          Connect on
-          <XLogo className="size-3" />
-        </Link>
-
         <button
           type="button"
-          aria-label="Toggle theme"
-          className="flex size-9 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+          className="hidden items-center rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:flex"
         >
-          <Moon className="size-4" />
+          MENU
         </button>
 
         <div className="lg:hidden">
-          <MobileMenu items={["Pricing", "Testimonials"]} />
+          <MobileMenu items={["REVOLUT", "VACANCES"]} />
         </div>
       </div>
     </nav>

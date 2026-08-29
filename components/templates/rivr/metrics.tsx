@@ -34,11 +34,7 @@ const METRICS = [
   },
 ];
 
-const CELL_BORDERS = [
-  "",
-  "border-s border-foreground/5 md:border-foreground/10",
-  "border-s border-foreground/5 md:border-foreground/10",
-];
+const CELL_BORDERS = ["", "border-s border-border", "border-s border-border"];
 
 export function Metrics() {
   return (
@@ -46,7 +42,7 @@ export function Metrics() {
       data-slot="metrics"
       className="mx-auto w-full max-w-[1536px] overflow-x-hidden px-3 py-4 md:px-5 md:py-12"
     >
-      <div className="rounded-[1.5rem] border border-foreground/[0.05] bg-foreground/[0.02] p-3 md:rounded-[3rem] md:p-16">
+      <div className="rounded-[1.5rem] border border-border bg-card p-3 md:rounded-[3rem] md:p-16">
         <dl className="grid grid-cols-[1fr_1.4fr_1fr]">
           {METRICS.map((metric, i) => (
             <motion.div

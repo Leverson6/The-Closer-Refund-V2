@@ -17,9 +17,9 @@ export default function Rivr() {
       <RivrStyles />
       <MotionConfig reducedMotion="user">
         <Hero />
-        <Metrics />
         <LogoCloud />
         <Stepper />
+        <Metrics />
         <Features />
         <Cta />
         <Footer />

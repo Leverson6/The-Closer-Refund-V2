@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "motion/react";
 
 import { Navbar } from "./navbar";
@@ -21,15 +20,6 @@ export function Hero() {
         <Navbar />
 
         <div className="flex w-full max-w-4xl flex-col items-center gap-5 px-4 pb-28 pt-16 text-center sm:pt-20 lg:pb-36 lg:pt-24">
-          <motion.span
-            initial={{ y: 12, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground/90"
-          >
-            New template!
-          </motion.span>
-
           <motion.h1
             initial={{ y: 16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -47,19 +37,6 @@ export function Hero() {
           >
             Create your next landing page using this free template.
           </motion.p>
-
-          <motion.div
-            initial={{ y: 16, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          >
-            <Link
-              href="#partners"
-              className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-2.5 text-sm font-semibold text-background shadow-lg transition-opacity hover:opacity-90"
-            >
-              See more
-            </Link>
-          </motion.div>
         </div>
       </div>
     </section>
