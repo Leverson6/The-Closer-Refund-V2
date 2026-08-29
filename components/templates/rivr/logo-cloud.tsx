@@ -2519,8 +2519,8 @@ const ALL_LOGOS: LogoEntry[] = [
   { id: "americaneagle", Component: AmericanEagleLogo, mode: "mono", className: LOGO_CLASSNAME_LARGE },
   { id: "rei", Component: ReiLogo, mode: "color", className: LOGO_CLASSNAME_LARGE },
   { id: "merrell", Component: MerrellLogo, mode: "color", className: LOGO_CLASSNAME_LARGE },
-  { id: "foxracing", Component: FoxRacingLogo, mode: "mono", className: LOGO_CLASSNAME_WIDE },
-  { id: "yamaha", Component: YamahaLogo, mode: "color", className: LOGO_CLASSNAME_WIDE },
+  { id: "foxracing", Component: FoxRacingLogo, mode: "mono", className: LOGO_CLASSNAME_WIDE_MEDIUM_PLUS },
+  { id: "yamaha", Component: YamahaLogo, mode: "color", className: LOGO_CLASSNAME_WIDE_MEDIUM_PLUS },
 ];
 
 function shuffle<T>(items: T[]): T[] {
