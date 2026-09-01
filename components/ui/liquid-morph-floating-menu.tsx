@@ -139,7 +139,7 @@ export default function FloatingMenu({ items }: FloatingMenuProps) {
   return (
     <motion.div
       ref={containerRef}
-      className="fixed top-4 right-4 z-[100] sm:top-6 sm:right-6"
+      className="fixed top-10 right-[max(1rem,calc((100vw-80rem)/2+1rem))] z-[100] sm:top-11 sm:right-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:right-[max(2rem,calc((100vw-80rem)/2+2rem))]"
       style={{ pointerEvents: "auto" }}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
